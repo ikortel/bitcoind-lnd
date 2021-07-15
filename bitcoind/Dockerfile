@@ -23,6 +23,8 @@ RUN apk update \
   && rm -rf /bitcoin-${VERSION}-x86_64-linux-gnu.tar.gz \
   && apk del tar wget ca-certificates
 
+VOLUME ["/root/.bitcoin"]
+
 EXPOSE 8333 18333 18332 28333 28332
 
 CMD bitcoind -conf=/root/.bitcoin/bitcoin.conf -datadir=/root/.bitcoin -printtoconsole

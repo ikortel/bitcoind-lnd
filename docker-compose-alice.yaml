@@ -10,7 +10,7 @@ services:
       - "9010:9735"
     volumes:
       - ./lnd/lnd.conf:/root/.lnd/lnd.conf
-      - bitcoin:/root/.bitcoin/
+      - bitcoind:/root/.bitcoin/
       - lnd_alice:/root/.lnd/ # data persistence
     command:
       --noseedbackup
@@ -30,15 +30,5 @@ services:
 
 
 volumes:
-  bitcoin:
-    driver: local
-    driver_opts:
-      type: none
-      device: "/Users/cherijs/.docker_volumes/.bitcoin"
-      o: bind
+  bitcoind:
   lnd_alice:
-    driver: local
-    driver_opts:
-      type: none
-      device: "/Users/cherijs/.docker_volumes/simnet/alice"
-      o: bind
