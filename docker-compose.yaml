@@ -21,7 +21,6 @@ services:
       - bitcoind:/root/.bitcoin/
       - lnd:/root/.lnd/ # data persistence
     command:
-      --noseedbackup
       --debuglevel=debug
       --maxpendingchannels=10
       --rpclisten=0.0.0.0:10009
@@ -43,6 +42,13 @@ services:
 #      --autopilot.active
 #      --autopilot.maxchannels=5
 #      --autopilot.allocation=0.6
+
+  channelbackup:
+    build: ./channelbackup
+    container_name: channelbackup
+    restart: unless-stopped
+    volumes:
+      - lnd:/root/.lnd/ # data persistence
 
 volumes:
   bitcoind:
